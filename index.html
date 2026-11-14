@@ -327,6 +327,8 @@ footer{background:linear-gradient(#2a1d15f0,#2a1d15e6),url(img/footer-brasas.jpg
   .c3 .stage{align-items:end;padding-bottom:12vh}.c3 h2{font-size:17vw}
   .fbot{padding-right:64px;flex-direction:column;gap:6px}}
 @media(prefers-reduced-motion:reduce){.hint i,.steam path,.ringtxt,.fb,.tag{animation:none}}
+/* En el teléfono: sin filtro de color (el teléfono lo recalcula en cada cuadro y traba el scroll) y con un desvanecido más amplio para que el video vertical no se vea lavado */
+@media(max-width:860px){.c2 .media video{filter:none;-webkit-mask-image:radial-gradient(ellipse 75% 62% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 75% 62% at 50% 50%,#000 60%,transparent 100%)}.c3 .media video{filter:none}.c2 .stage:after{width:100%;height:52%;background:linear-gradient(to top,#f1e9dc 38%,#f1e9dc00)}}
 </style>
 </head>
 <body>
@@ -364,7 +366,7 @@ window.__gl3d=new Promise(ok=>{window.__gl3dOk=ok});</script>
 
 <section class="chapter c2" id="c2">
   <div class="stage">
-    <div class="media"><video src="media/v4.mp4" muted playsinline preload="auto"></video></div>
+    <div class="media"><video data-src="media/v4.mp4" data-movil="media/v4-movil.mp4" muted playsinline preload="auto"></video></div>
     <div class="n">2</div>
     <div class="timer"><b id="brew">0:00</b><span>Tiempo en el fuego</span></div>
     <h2 class="split">Sella<br>el corte</h2>
@@ -407,7 +409,7 @@ window.__gl3d=new Promise(ok=>{window.__gl3dOk=ok});</script>
 
 <section class="chapter c3" id="c3">
   <div class="stage">
-    <div class="media"><video src="media/v5.mp4" muted playsinline preload="auto"></video></div>
+    <div class="media"><video data-src="media/v5.mp4" data-movil="media/v5-movil.mp4" muted playsinline preload="none"></video></div>
     <h2 class="split">Que el<br>fuego<br>haga<br>lo suyo</h2>
     <div class="copy">
       <div class="kicker">03 — El corte</div>
@@ -455,10 +457,10 @@ window.__gl3d=new Promise(ok=>{window.__gl3dOk=ok});</script>
   <div class="tabs" role="tablist" aria-label="Categorías del menú"><button role="tab" data-cat="todo" aria-selected="true" class="on">Todo</button><button role="tab" data-cat="cortes" aria-selected="false">Cortes</button><button role="tab" data-cat="achuras" aria-selected="false">Achuras</button><button role="tab" data-cat="acompanantes" aria-selected="false">Acompañantes</button><button role="tab" data-cat="vinos" aria-selected="false">Vinos</button><button role="tab" data-cat="postres" aria-selected="false">Postres</button></div>
   <div class="mlist" id="mlist">
   <div class="mrow" data-cat="cortes" data-vid="media/v2.mp4" data-img="img/corte-picanha.jpg" data-peso="400 g" data-term="A punto" data-mar="Malbec Reserva" data-desc="La tapa de cuadril, ensartada en espeto y dorada despacio para que la grasa quede crocante y la carne jugosa."><span class="i">01</span><img class="th" src="img/corte-picanha.jpg" alt="" loading="lazy"><h3><button type="button" class="ver" aria-haspopup="dialog">Picanha al Espeto</button></h3><span class="d">400 g · sal gruesa · grasa dorada</span><span class="p">$20.00</span><button class="add" data-add aria-label="Agregar Picanha al Espeto">+</button></div>
-  <div class="mrow" data-cat="cortes" data-vid="media/v4.mp4" data-img="img/menu-ribeye.jpg" data-peso="350 g" data-term="A punto" data-mar="Cabernet Sauvignon" data-desc="Madurado en seco durante 21 días. El marmoleo se derrite sobre la brasa y deja un sabor intenso, casi a mantequilla."><span class="i">02</span><img class="th" src="img/menu-ribeye.jpg" alt="" loading="lazy"><h3><button type="button" class="ver" aria-haspopup="dialog">Ribeye Madurado</button></h3><span class="d">21 días · 350 g · marmoleado</span><span class="p">$24.00</span><button class="add" data-add aria-label="Agregar Ribeye Madurado">+</button></div>
-  <div class="mrow" data-cat="cortes" data-vid="media/v5.mp4" data-img="img/corte-tira.jpg" data-peso="500 g" data-term="Bien cocido" data-mar="Malbec Reserva" data-desc="Costilla cortada en tiras y hecha a fuego lento durante tres horas, hasta que la carne se separa sola del hueso."><span class="i">03</span><img class="th" src="img/corte-tira.jpg" alt="" loading="lazy"><h3><button type="button" class="ver" aria-haspopup="dialog">Asado de Tira</button></h3><span class="d">3 h a fuego lento · con hueso</span><span class="p">$19.00</span><button class="add" data-add aria-label="Agregar Asado de Tira">+</button></div>
+  <div class="mrow" data-cat="cortes" data-vid="media/v4-movil.mp4" data-img="img/menu-ribeye.jpg" data-peso="350 g" data-term="A punto" data-mar="Cabernet Sauvignon" data-desc="Madurado en seco durante 21 días. El marmoleo se derrite sobre la brasa y deja un sabor intenso, casi a mantequilla."><span class="i">02</span><img class="th" src="img/menu-ribeye.jpg" alt="" loading="lazy"><h3><button type="button" class="ver" aria-haspopup="dialog">Ribeye Madurado</button></h3><span class="d">21 días · 350 g · marmoleado</span><span class="p">$24.00</span><button class="add" data-add aria-label="Agregar Ribeye Madurado">+</button></div>
+  <div class="mrow" data-cat="cortes" data-vid="media/v5-movil.mp4" data-img="img/corte-tira.jpg" data-peso="500 g" data-term="Bien cocido" data-mar="Malbec Reserva" data-desc="Costilla cortada en tiras y hecha a fuego lento durante tres horas, hasta que la carne se separa sola del hueso."><span class="i">03</span><img class="th" src="img/corte-tira.jpg" alt="" loading="lazy"><h3><button type="button" class="ver" aria-haspopup="dialog">Asado de Tira</button></h3><span class="d">3 h a fuego lento · con hueso</span><span class="p">$19.00</span><button class="add" data-add aria-label="Agregar Asado de Tira">+</button></div>
   <div class="mrow" data-cat="cortes" data-vid="media/v3.mp4" data-img="img/menu-entrana.jpg" data-peso="300 g" data-term="Jugoso" data-mar="Malbec Reserva" data-desc="El corte favorito de los parrilleros: delgado y lleno de sabor. Se hace en pocos minutos sobre brasa fuerte."><span class="i">04</span><img class="th" src="img/menu-entrana.jpg" alt="" loading="lazy"><h3><button type="button" class="ver" aria-haspopup="dialog">Entraña</button></h3><span class="d">Fina, jugosa, al chimichurri</span><span class="p">$17.00</span><button class="add" data-add aria-label="Agregar Entraña">+</button></div>
-  <div class="mrow" data-cat="cortes" data-vid="media/v4.mp4" data-img="img/menu-bife.jpg" data-peso="400 g" data-term="A punto" data-mar="Cabernet Sauvignon" data-desc="Corte grueso del lomo bajo con su borde de grasa: sellado fuerte por fuera y rosado por dentro."><span class="i">05</span><img class="th" src="img/menu-bife.jpg" alt="" loading="lazy"><h3><button type="button" class="ver" aria-haspopup="dialog">Bife de Chorizo</button></h3><span class="d">400 g · con borde de grasa</span><span class="p">$22.00</span><button class="add" data-add aria-label="Agregar Bife de Chorizo">+</button></div>
+  <div class="mrow" data-cat="cortes" data-vid="media/v4-movil.mp4" data-img="img/menu-bife.jpg" data-peso="400 g" data-term="A punto" data-mar="Cabernet Sauvignon" data-desc="Corte grueso del lomo bajo con su borde de grasa: sellado fuerte por fuera y rosado por dentro."><span class="i">05</span><img class="th" src="img/menu-bife.jpg" alt="" loading="lazy"><h3><button type="button" class="ver" aria-haspopup="dialog">Bife de Chorizo</button></h3><span class="d">400 g · con borde de grasa</span><span class="p">$22.00</span><button class="add" data-add aria-label="Agregar Bife de Chorizo">+</button></div>
   <div class="mrow" data-cat="cortes" data-vid="media/v1.mp4" data-img="img/menu-caja.jpg" data-peso="1,2 kg" data-term="Variado" data-mar="Malbec Reserva (botella)" data-desc="Picanha, entraña, chorizo, morcilla, papas y chimichurri para dos personas, lista para llevar a casa."><span class="i">06</span><img class="th" src="img/menu-caja.jpg" alt="" loading="lazy"><h3><button type="button" class="ver" aria-haspopup="dialog">La Caja Carbon</button></h3><span class="d">Parrilla para dos · para llevar</span><span class="p">$45.00</span><button class="add" data-add aria-label="Agregar La Caja Carbon">+</button></div>
   <div class="mrow" data-cat="achuras" data-vid="media/v3.mp4" data-img="img/menu-chorizos.jpg" data-peso="2 piezas" data-term="Bien cocido" data-mar="Malbec Reserva" data-desc="Embutidos hechos en casa, asados hasta que la piel cruje. Se sirven con pan tostado y chimichurri."><span class="i">07</span><img class="th" src="img/menu-chorizos.jpg" alt="" loading="lazy"><h3><button type="button" class="ver" aria-haspopup="dialog">Chorizo y Morcilla</button></h3><span class="d">De la casa · con pan y chimichurri</span><span class="p">$9.00</span><button class="add" data-add aria-label="Agregar Chorizo y Morcilla">+</button></div>
   <div class="mrow" data-cat="achuras" data-vid="media/v2.mp4" data-img="img/menu-mollejas.jpg" data-peso="250 g" data-term="Crocantes" data-mar="Cabernet Sauvignon" data-desc="Mollejas doradas a la brasa hasta quedar crocantes por fuera y suaves por dentro, con un toque de limón."><span class="i">08</span><img class="th" src="img/menu-mollejas.jpg" alt="" loading="lazy"><h3><button type="button" class="ver" aria-haspopup="dialog">Mollejas Crocantes</button></h3><span class="d">Con limón y sal en escamas</span><span class="p">$11.00</span><button class="add" data-add aria-label="Agregar Mollejas Crocantes">+</button></div>
@@ -585,9 +587,19 @@ let sucio=true;
 vids.forEach(v=>v&&v.addEventListener('loadedmetadata',()=>{sucio=true}));
 addEventListener('resize',()=>{sucio=true});
 
-/* Calentar los videos mientras está la pantalla de carga: el primer cuadro ya está decodificado
-   cuando el visitante llega a la sección (antes se congelaba casi un segundo). */
-const videosListos=Promise.all(vids.filter(Boolean).map(v=>new Promise(ok=>{
+/* Cada video en su tamaño: en el teléfono uno más liviano. El primero se carga ya; los demás cuando el visitante
+   se acerca, para que no le quiten la conexión a las fotos (antes se bajaban 11 MB de golpe y la página se trababa). */
+const ligero=matchMedia('(max-width: 860px)').matches||navigator.connection?.saveData;
+const ponerVideo=v=>{if(v.getAttribute('src'))return;v.preload='auto';v.src=ligero?v.dataset.movil:v.dataset.src;v.load()};
+const conVideo=vids.filter(Boolean);
+if(conVideo[0])ponerVideo(conVideo[0]);
+const cercaVideo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){ponerVideo(e.target.querySelector('video'));cercaVideo.unobserve(e.target)}}),{rootMargin:'150% 0px'});
+conVideo.slice(1).forEach(v=>cercaVideo.observe(v.closest('.chapter')));
+
+/* Calentar el primer video mientras está la pantalla de carga: el primer cuadro ya está decodificado
+   cuando el visitante llega a la sección (antes se congelaba casi un segundo). Los demás se calientan al cargar. */
+conVideo.slice(1).forEach(v=>v.addEventListener('loadeddata',()=>{v.currentTime=.05},{once:true}));
+const videosListos=Promise.all(conVideo.slice(0,1).map(v=>new Promise(ok=>{
   const fin=()=>ok();
   if(v.readyState>=2){v.currentTime=.05;v.addEventListener('seeked',fin,{once:true});return}
   v.addEventListener('loadeddata',()=>{v.currentTime=.05;v.addEventListener('seeked',fin,{once:true})},{once:true});
@@ -785,7 +797,7 @@ const canvas=document.getElementById('bean'), chapter=canvas.closest('.chapter')
 // Teléfonos y pantallas pequeñas: menos píxeles, sin sombras y menos partículas (se ve igual en esa pantalla).
 const MOVIL=matchMedia('(max-width: 860px), (hover: none)').matches;
 const renderer=new THREE.WebGLRenderer({canvas,antialias:!MOVIL,alpha:true,powerPreference:'high-performance'});
-renderer.setPixelRatio(Math.min(devicePixelRatio,MOVIL?1.25:1.5));
+renderer.setPixelRatio(Math.min(devicePixelRatio,MOVIL?1:1.5));
 renderer.outputColorSpace=THREE.SRGBColorSpace;
 renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.08;
 renderer.shadowMap.enabled=!MOVIL; renderer.shadowMap.type=THREE.PCFShadowMap;
@@ -1112,9 +1124,13 @@ async function preparar(){
 }
 preparar().finally(()=>window.__gl3dOk&&window.__gl3dOk());
 
-let last=performance.now();
-renderer.setAnimationLoop(now=>{const dt=Math.min((now-last)/1000,.05);last=now;
-  if(!enPantalla||document.hidden)return;
+let last=performance.now(), proximo=0;
+renderer.setAnimationLoop(now=>{
+  if(!enPantalla||document.hidden){last=now;return}
+  // En el teléfono la escena se dibuja a unos 30 cuadros por segundo: se ve igual y deja libre el procesador
+  // para el scroll (antes la parrilla se trababa y la página seguía bajando sola).
+  if(MOVIL&&now<proximo)return; proximo=now+31;
+  const dt=Math.min((now-last)/1000,.05);last=now;
   measure();
   if(quieto){frame(0);return}
   frame(dt)});
