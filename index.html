@@ -18,15 +18,15 @@ a{color:inherit;text-decoration:none;cursor:none}
 button{font:inherit;cursor:none;border:0;background:none;color:inherit}
 ::selection{background:var(--ink);color:var(--cream)}
 
-/* grain + vignette */
-/* Grano fijo del tamaño de la pantalla (antes era 4 veces la pantalla y se movía sin parar encima de todo) */
+/* Grano y viñeta */
+/* Grano fijo: moverlo encima de todo trababa el scroll */
 .grain{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");transform:translateZ(0)}
-/* Las secciones de abajo no se dibujan hasta que llegas cerca de ellas */
+/* Secciones de abajo: se dibujan al acercarse */
 .stats,.gallery,.builder,.menu,footer{content-visibility:auto;contain-intrinsic-size:auto 900px}
-/* Animaciones decorativas en pausa mientras su sección no se ve */
+/* Adornos en pausa fuera de pantalla */
 .builder.off .ringtxt,.builder.off .fb,.builder.off .tag,.builder.off .steam path{animation-play-state:paused}
 
-/* cursor */
+/* Cursor */
 .cur{position:fixed;left:0;top:0;z-index:100;pointer-events:none;mix-blend-mode:difference}
 .cur .dot{position:absolute;width:8px;height:8px;margin:-4px;border-radius:50%;background:#f1e9dc}
 .cur .ring{position:absolute;width:44px;height:44px;margin:-22px;border-radius:50%;border:1px solid #f1e9dc;transition:width .35s,height .35s,margin .35s,background .35s}
@@ -36,7 +36,7 @@ button{font:inherit;cursor:none;border:0;background:none;color:inherit}
 .cur.link .ring{width:64px;height:64px;margin:-32px}
 @media(hover:none){.cur{display:none}body,a,button{cursor:auto}}
 
-/* loader */
+/* Pantalla de carga */
 .loader{position:fixed;inset:0;z-index:95;background:var(--ink);color:var(--cream);display:grid;place-items:center;transition:clip-path 1.1s cubic-bezier(.77,0,.18,1);clip-path:inset(0 0 0 0)}
 .loader.out{clip-path:inset(0 0 100% 0)}
 .loader .w{text-align:center}
@@ -45,7 +45,7 @@ button{font:inherit;cursor:none;border:0;background:none;color:inherit}
 .loader .bar{width:220px;height:1px;background:#f1e9dc33;margin:24px auto 0;overflow:hidden}
 .loader .bar i{display:block;height:100%;width:0;background:var(--cream)}
 
-/* nav */
+/* Menú */
 nav{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:18px 4vw;transition:transform .5s cubic-bezier(.2,.8,.2,1),background .4s}
 nav.hide{transform:translateY(-110%)}
 nav.solid{background:#f1e9dcf5}
@@ -60,13 +60,13 @@ nav.solid{background:#f1e9dcf5}
 .pill i{font-style:normal;background:var(--ember);color:#fff;border-radius:99px;min-width:20px;height:20px;display:grid;place-items:center;font-size:11px;transition:transform .3s}
 .pill i.pop{transform:scale(1.5)}
 
-/* split text */
+/* Texto partido */
 .split .ln{display:block;overflow:hidden;padding-bottom:.04em}
 .split .wd{display:inline-block;white-space:nowrap}
 .split .ch{display:inline-block;transform:translateY(110%) rotate(6deg);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
 .split.in .ch{transform:none}
 
-/* chapters */
+/* Capítulos */
 .chapter{position:relative;height:280vh}
 .stage{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;align-items:center;padding:0 4vw}
 .media{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:0}
@@ -92,7 +92,7 @@ h2 em,h1 em{font-style:italic;text-transform:none;color:var(--ember)}
 .c1 .stage{grid-template-columns:1fr auto 300px}
 .c1 h1{grid-column:1}
 .llamarada{position:absolute;inset:0;pointer-events:none;opacity:0;z-index:1;background:radial-gradient(120% 80% at 62% 105%,#ffb347 0%,#e2561c 28%,#7a2408 55%,transparent 78%);mix-blend-mode:multiply}
-@media(max-width:600px){.c1 h1{font-size:clamp(52px,15.5vw,84px)}}  /* "ENCIENDE" es más largo que el título original */.c1 .copy{grid-column:3}
+@media(max-width:600px){.c1 h1{font-size:clamp(52px,15.5vw,84px)}}  /* "ENCIENDE" no cabe al tamaño normal */.c1 .copy{grid-column:3}
 .hint{position:absolute;left:50%;bottom:4vh;transform:translateX(-50%);z-index:3;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:10px}
 .hint i{width:1px;height:46px;background:linear-gradient(var(--ink),transparent);animation:drip 1.8s ease-in-out infinite;transform-origin:top}
 @keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
@@ -112,14 +112,14 @@ h2 em,h1 em{font-style:italic;text-transform:none;color:var(--ember)}
 .chip{position:absolute;left:4vw;bottom:5vh;z-index:3;font-size:11px;letter-spacing:.14em;text-transform:uppercase;display:flex;gap:10px;align-items:center}
 .chip:before{content:"";width:28px;height:1px;background:var(--ink)}
 
-/* marquee */
+/* Cinta */
 .marq{background:var(--ink);color:var(--cream);overflow:hidden;padding:22px 0;white-space:nowrap;position:relative;z-index:5}
 .marq .tr{display:inline-flex;will-change:transform}
 .marq span{font-family:'DM Serif Display';font-size:clamp(40px,6vw,92px);text-transform:uppercase;padding:0 .35em;display:inline-flex;align-items:center;gap:.35em}
 .marq span em{font-style:italic;text-transform:none;color:var(--caramel)}
 .marq svg{width:.6em;height:.6em}
 
-/* stats */
+/* Cifras */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #2a1d1522}
 .stat{padding:8vh 3vw;border-right:1px solid #2a1d1522;position:relative;overflow:hidden}
 .stat:last-child{border-right:0}
@@ -130,7 +130,7 @@ h2 em,h1 em{font-style:italic;text-transform:none;color:var(--ember)}
 .stat:after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--ember);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
 .stat:hover:after{transform:none}
 
-/* gallery */
+/* Galería */
 .gallery{position:relative;min-height:150vh;padding:18vh 4vw;overflow:hidden}
 .gtext{position:relative;z-index:3;max-width:520px}
 .gtext h2{font-size:clamp(60px,7.5vw,128px);margin:14px 0 26px}
@@ -143,7 +143,7 @@ h2 em,h1 em{font-style:italic;text-transform:none;color:var(--ember)}
 .g2{right:4vw;top:40vh;width:24vw;aspect-ratio:4/5}
 .g3{right:20vw;top:92vh;width:18vw;aspect-ratio:1}
 @media(max-width:860px){.gallery{min-height:auto;padding:12vh 5vw;display:grid;grid-template-columns:1fr 1fr;gap:14px}.gtext{grid-column:1/-1;margin-bottom:20px}.gimg{position:relative;inset:auto!important;width:100%!important;margin:0;aspect-ratio:3/4!important}.g3{grid-column:1/-1;aspect-ratio:16/9!important}}
-/* origins horizontal */
+/* Orígenes en horizontal */
 .origins{position:relative;height:340vh;background:var(--ink);color:var(--cream)}
 .origins .stage{display:block;padding:0}
 .origins .head{position:absolute;left:4vw;top:11vh;z-index:2;max-width:34vw}
@@ -163,7 +163,7 @@ h2 em,h1 em{font-style:italic;text-transform:none;color:var(--ember)}
 .bar2{position:absolute;left:4vw;right:4vw;bottom:8vh;height:1px;background:#f1e9dc22}
 .bar2 i{display:block;height:100%;width:0;background:var(--cream)}
 
-/* builder */
+/* Arma tu plato */
 .builder{padding:18vh 4vw;display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center}
 .builder h2{font-size:clamp(60px,7vw,120px)}
 .builder p.lead{color:var(--muted);line-height:1.7;margin:22px 0 40px;max-width:420px}
@@ -191,7 +191,7 @@ input[type=range]:active::-webkit-slider-thumb{transform:scale(1.3)}
 .cupsvg{width:62%;position:relative;z-index:2;filter:drop-shadow(0 40px 40px #2a1d1530)}
 .cupsvg .liq{transition:fill .6s}
 .cupsvg .foam{transition:fill .6s}
-/* fotos reales del término: se cruzan con un fundido y un zoom suave; del dibujo solo queda el humo */
+/* Fotos del término con fundido y zoom */
 .disc{overflow:hidden;z-index:1}
 .cupbox .halo{z-index:0}
 .disc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;scale:1.12;transition:opacity .8s ease,scale 1.4s cubic-bezier(.2,.8,.2,1)}
@@ -207,7 +207,7 @@ input[type=range]:active::-webkit-slider-thumb{transform:scale(1.3)}
 .result h4{font-family:'DM Serif Display';font-weight:400;font-size:34px}
 .result small{display:block;color:var(--muted);font-size:12px;margin-top:4px}
 
-/* menu */
+/* Menú de platos */
 .menu{padding:14vh 4vw 18vh;background:var(--cream);position:relative}
 .menu h2{font-size:clamp(60px,8vw,130px);margin-bottom:50px}
 .mrow{display:grid;grid-template-columns:60px 110px 1fr 1fr 110px 60px;align-items:center;padding:30px 0;border-top:1px solid #2a1d1533;position:relative;transition:padding .5s cubic-bezier(.2,.8,.2,1)}
@@ -298,7 +298,7 @@ input[type=range]:active::-webkit-slider-thumb{transform:scale(1.3)}
 .preview.on{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-3deg)}
 .preview video{width:100%;height:100%;object-fit:cover}
 
-/* footer */
+/* Pie */
 footer{background:linear-gradient(#2a1d15f0,#2a1d15e6),url(img/footer-brasas.jpg) center/cover;color:var(--cream);padding:12vh 4vw 4vh;position:relative;overflow:hidden}
 .ftop{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:4vw;margin-bottom:10vh}
 .ftop h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#bfae9c;margin-bottom:16px;font-weight:500}
@@ -327,19 +327,19 @@ footer{background:linear-gradient(#2a1d15f0,#2a1d15e6),url(img/footer-brasas.jpg
   .c3 .stage{align-items:end;padding-bottom:12vh}.c3 h2{font-size:17vw}
   .fbot{padding-right:64px;flex-direction:column;gap:6px}}
 @media(prefers-reduced-motion:reduce){.hint i,.steam path,.ringtxt,.fb,.tag{animation:none}}
-/* En el teléfono: sin filtro de color (el teléfono lo recalcula en cada cuadro y traba el scroll) y con un desvanecido más amplio para que el video vertical no se vea lavado */
+/* Teléfono: sin filtro de color, que traba el scroll */
 @media(max-width:860px){.c2 .media video{filter:none;-webkit-mask-image:radial-gradient(ellipse 75% 62% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 75% 62% at 50% 50%,#000 60%,transparent 100%)}.c3 .media video{filter:none}.c2 .stage:after{width:100%;height:52%;background:linear-gradient(to top,#f1e9dc 38%,#f1e9dc00)}}
 </style>
 </head>
 <body>
 <script>document.body.classList.add('loading');
-/* La escena 3D avisa aquí cuando terminó de prepararse */
+/* Escena 3D lista */
 window.__gl3d=new Promise(ok=>{window.__gl3dOk=ok});</script>
 <div class="loader" id="loader"><div class="w"><div class="logo">Carbon</div><div class="num" id="lnum">00</div><div class="bar"><i id="lbar"></i></div></div></div>
 <div class="grain"></div>
 <div class="cur" id="cur"><div class="ring"></div><div class="dot"></div><div class="lab" id="clab">Arrastra</div></div>
 <div class="preview" id="preview"><video muted loop playsinline></video></div>
-<div class="toast" id="toast">Agregado a tu pedido 🔥</div>
+<div class="toast" id="toast">Agregado a tu pedido</div>
 
 <nav id="nav"><a class="logo" href="#c1" data-mag>Carbon<small>Black</small></a>
 <div class="links"><a href="#c1"><span data-t="Fuego">Fuego</span></a><a href="#c2"><span data-t="Brasas">Brasas</span></a><a href="#roastery"><span data-t="Parrilla">Parrilla</span></a><a href="#origins"><span data-t="Cortes">Cortes</span></a><a href="#menu"><span data-t="Menú">Menú</span></a><a href="#reservas"><span data-t="Reservar">Reservar</span></a></div>
@@ -433,7 +433,7 @@ window.__gl3d=new Promise(ok=>{window.__gl3dOk=ok});</script>
     <svg class="ringtxt" viewBox="0 0 400 400"><defs><path id="circ" d="M200,200 m-170,0 a170,170 0 1,1 340,0 a170,170 0 1,1 -340,0"/></defs><text><textPath href="#circ">HECHO PARA TI · ENCENDIDO ESTA TARDE · CARBON BLACK · HECHO PARA TI · ENCENDIDO ESTA TARDE ·</textPath></text></svg>
     <div class="halo" id="halo"></div>
     <img class="fb b1" src="img/chimichurri.jpg" alt=""><img class="fb b2" src="img/marmoleo.jpg" alt="">
-    <div class="tag t1" id="tagS">🔥 A punto</div><div class="tag t2" id="tagM">🍟 Papas</div><div class="tag t3" id="tagW">💨 Un poco</div>
+    <div class="tag t1" id="tagS">A punto</div><div class="tag t2" id="tagM">Papas</div><div class="tag t3" id="tagW">Un poco</div>
     <svg class="cupsvg" viewBox="0 0 400 360">
       <g class="steam"><path d="M170 120c-14-20 14-30 0-52"/><path d="M205 114c-14-20 14-30 0-52"/><path d="M240 120c-14-20 14-30 0-52"/></g>
       <ellipse cx="200" cy="330" rx="175" ry="18" fill="#2a1d1522"/>
@@ -523,12 +523,12 @@ window.__gl3d=new Promise(ok=>{window.__gl3dOk=ok});</script>
 
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
-/* ---------- helpers ---------- */
+/* ---------- Utilidades ---------- */
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)), lerp=(a,b,t)=>a+(b-a)*t;
 const AUTO=location.hash==='#autoscroll'||location.hash==='#capture';
 
-/* ---------- split text ---------- */
+/* ---------- Texto partido ---------- */
 $$('.split').forEach(el=>{
   const lines=el.innerHTML.split(/<br\s*\/?>/i);
   let k=0;
@@ -541,20 +541,20 @@ $$('.split').forEach(el=>{
 const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.25});
 $$('.split,.fade').forEach(el=>io.observe(el));
 
-/* ---------- marquee (scroll velocity) ---------- */
+/* ---------- Cinta según la velocidad del scroll ---------- */
 const marq=$('.marq .tr');
 const unit=`<span>Enciende las brasas <svg viewBox="0 0 20 20"><path d="M10 0l2.4 7.6L20 10l-7.6 2.4L10 20l-2.4-7.6L0 10l7.6-2.4z" fill="#b9814f"/></svg></span><span>Fuego <em>lento</em> <svg viewBox="0 0 20 20"><path d="M10 0l2.4 7.6L20 10l-7.6 2.4L10 20l-2.4-7.6L0 10l7.6-2.4z" fill="#b9814f"/></svg></span><span>Hecho con <em>paciencia</em> <svg viewBox="0 0 20 20"><path d="M10 0l2.4 7.6L20 10l-7.6 2.4L10 20l-2.4-7.6L0 10l7.6-2.4z" fill="#b9814f"/></svg></span>`;
 marq.innerHTML=unit.repeat(6);
 let mx=0,vel=0,lastY=scrollY;
 
-/* ---------- lenis smooth scroll ---------- */
+/* ---------- Scroll suave (Lenis) ---------- */
 let lenis=null;
 if(window.Lenis&&!AUTO&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
   lenis=new Lenis({duration:1.15,smoothWheel:true});window.lenis=lenis;
   $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=$(a.getAttribute('href'));if(t){e.preventDefault();lenis.scrollTo(t,{offset:0})}}));
 }
 
-/* ---------- scroll driven chapters ---------- */
+/* ---------- Capítulos con el scroll ---------- */
 const chapters=$$('.chapter'), vids=chapters.map(c=>c.querySelector('video'));
 const heads=chapters.map(c=>c.querySelector('h1,h2')), pars=$$('[data-par]'), hint=$('#hint');
 const ring=$('.progress circle'), pct=$('#pct'), nav=$('#nav'), brew=$('#brew');
@@ -565,7 +565,7 @@ function onScroll(){
   const y=scrollY;
   chapters.forEach((c,i)=>{
     const p=chapterP(c),v=vids[i];
-    // El video solo se adelanta cuando terminó de buscar el cuadro anterior: así no se atasca.
+    // Esperar el cuadro anterior para no atascar el video
     if(v&&v.duration&&!v.seeking){const t=p*(v.duration-.1);if(Math.abs(v.currentTime-t)>1/30)v.currentTime=t;
       v.style.transform=`scale(${1+p*.12})`}
     heads[i].style.transform=`translateY(${(p-.5)*-70}px)`;
@@ -573,10 +573,10 @@ function onScroll(){
   });
   const mob=innerWidth<860;
   pars.forEach(el=>{if(mob){el.style.transform='';return}const r=el.parentElement.getBoundingClientRect();if(r.bottom<-200||r.top>innerHeight+200)return;el.style.transform=`translateY(${(r.top+r.height/2-innerHeight/2)*+el.dataset.par}px)`});
-  // horizontal origins
+  // Orígenes en horizontal
   const op=chapterP(origins), maxX=track.scrollWidth-innerWidth+innerWidth*.06;
   track.style.transform=`translate(${-op*maxX}px,-30%)`; obar.style.width=op*100+'%';
-  // nav hide on scroll down
+  // Esconder el menú al bajar
   nav.classList.toggle('solid',y>40);
   if(!AUTO)nav.classList.toggle('hide',y>navY&&y>300);navY=y;
   const d=document.documentElement,pr=y/(d.scrollHeight-innerHeight);
@@ -587,8 +587,7 @@ let sucio=true;
 vids.forEach(v=>v&&v.addEventListener('loadedmetadata',()=>{sucio=true}));
 addEventListener('resize',()=>{sucio=true});
 
-/* Cada video en su tamaño: en el teléfono uno más liviano. El primero se carga ya; los demás cuando el visitante
-   se acerca, para que no le quiten la conexión a las fotos (antes se bajaban 11 MB de golpe y la página se trababa). */
+/* Videos: versión liviana en el teléfono; el primero ya, los demás al acercarse (eran 11 MB de golpe) */
 const ligero=matchMedia('(max-width: 860px)').matches||navigator.connection?.saveData;
 const ponerVideo=v=>{if(v.getAttribute('src'))return;v.preload='auto';v.src=ligero?v.dataset.movil:v.dataset.src;v.load()};
 const conVideo=vids.filter(Boolean);
@@ -596,8 +595,7 @@ if(conVideo[0])ponerVideo(conVideo[0]);
 const cercaVideo=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){ponerVideo(e.target.querySelector('video'));cercaVideo.unobserve(e.target)}}),{rootMargin:'150% 0px'});
 conVideo.slice(1).forEach(v=>cercaVideo.observe(v.closest('.chapter')));
 
-/* Calentar el primer video mientras está la pantalla de carga: el primer cuadro ya está decodificado
-   cuando el visitante llega a la sección (antes se congelaba casi un segundo). Los demás se calientan al cargar. */
+/* Decodificar el primer video durante la carga para que no se congele al llegar */
 conVideo.slice(1).forEach(v=>v.addEventListener('loadeddata',()=>{v.currentTime=.05},{once:true}));
 const videosListos=Promise.all(conVideo.slice(0,1).map(v=>new Promise(ok=>{
   const fin=()=>ok();
@@ -606,19 +604,19 @@ const videosListos=Promise.all(conVideo.slice(0,1).map(v=>new Promise(ok=>{
   v.addEventListener('error',fin,{once:true});
 })));
 
-/* Lo que no se ve no trabaja: marquesina y adornos del armador de platos */
+/* Pausar cinta y adornos fuera de pantalla */
 const visibles=new Set();
 const vio=new IntersectionObserver(es=>es.forEach(e=>{e.isIntersecting?visibles.add(e.target):visibles.delete(e.target);
   if(e.target.classList.contains('builder'))e.target.classList.toggle('off',!e.isIntersecting)}),{rootMargin:'200px'});
 [$('.marq'),$('.builder')].forEach(el=>vio.observe(el));
 
-/* ---------- counters ---------- */
+/* ---------- Contadores ---------- */
 const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);
   const el=e.target,end=+el.dataset.count,dec=+(el.dataset.dec||0),t0=performance.now();
   (function f(t){const k=clamp((t-t0)/1800),v=end*(1-Math.pow(1-k,4));el.textContent=dec?v.toFixed(dec):Math.round(v).toLocaleString('en-US');if(k<1)requestAnimationFrame(f)})(t0)}),{threshold:.6});
 $$('[data-count]').forEach(el=>cio.observe(el));
 
-/* ---------- cursor + magnetic ---------- */
+/* ---------- Cursor y botones magnéticos ---------- */
 const cur=$('#cur'),clab=$('#clab');let cx=innerWidth/2,cy=innerHeight/2,rx=cx,ry=cy;
 addEventListener('pointermove',e=>{cx=e.clientX;cy=e.clientY});
 document.addEventListener('pointerover',e=>{
@@ -631,27 +629,27 @@ $$('[data-mag]').forEach(el=>{
   el.addEventListener('pointerleave',()=>{el.style.transition='transform .6s cubic-bezier(.2,.8,.2,1)';el.style.transform='';setTimeout(()=>el.style.transition='',600)});
 });
 
-/* ---------- tilt cards ---------- */
+/* ---------- Tarjetas inclinables ---------- */
 $$('[data-tilt]').forEach(c=>{
   c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
     c.style.transform=`perspective(900px) rotateY(${x*12}deg) rotateX(${-y*12}deg)`;c.querySelector('.bg')&&(c.querySelector('.bg').style.backgroundPosition=`${50+x*20}% ${50+y*20}%`)});
   c.addEventListener('pointerleave',()=>c.style.transform='');
 });
 
-/* ---------- menu hover preview ---------- */
+/* ---------- Vista previa del menú ---------- */
 const prev=$('#preview'),pv=prev.querySelector('video');let px=0,py=0;
 $$('.mrow').forEach(r=>{
   r.addEventListener('pointerenter',()=>{if(!r.dataset.vid)return;if(pv.getAttribute('src')!==r.dataset.vid){pv.src=r.dataset.vid}pv.play().catch(()=>{});prev.classList.add('on')});
   r.addEventListener('pointerleave',()=>prev.classList.remove('on'));
 });
 
-/* ---------- cart ---------- */
+/* ---------- Pedido ---------- */
 let count=0;const cnt=$('#count'),toast=$('#toast');let tt;
 function addToCart(name){count++;cnt.textContent=count;cnt.classList.add('pop');setTimeout(()=>cnt.classList.remove('pop'),300);
-  toast.textContent=`${name} agregado a tu pedido 🔥`;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('on'),2200)}
+  toast.textContent=`${name} agregado a tu pedido`;toast.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('on'),2200)}
 $$('[data-add]').forEach(b=>b.addEventListener('click',()=>addToCart(b.closest('.mrow').querySelector('h3').textContent)));
 
-/* ---------- menú: pestañas y ficha de cada plato ---------- */
+/* ---------- Menú: pestañas y ficha ---------- */
 const filas=$$('.mrow'), pestanas=$$('.tabs button'), nombresCat={cortes:'Cortes',achuras:'Achuras',acompanantes:'Acompañantes',vinos:'Vinos',postres:'Postres'};
 pestanas.forEach(b=>b.addEventListener('click',()=>{
   pestanas.forEach(x=>{const on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-selected',on)});
@@ -663,7 +661,7 @@ const ficha=$('#ficha');let fichaFila=null;
 function abrirFicha(f){fichaFila=f;
   $('#fimg').src=f.dataset.img;$('#fnom').textContent=f.querySelector('h3').textContent;$('#fcat').textContent=nombresCat[f.dataset.cat];
   $('#fdesc').textContent=f.dataset.desc;
-  // un dato que no aplica (—) no se muestra: un postre no tiene término
+  // ocultar datos que no aplican (—)
   [['#fpeso','peso'],['#fterm','term'],['#fmar','mar']].forEach(([id,k])=>{const v=f.dataset[k];$(id).textContent=v;$(id).parentElement.hidden=v==='—'});
   $('#fprecio').textContent=f.querySelector('.p').textContent;prev.classList.remove('on');ficha.showModal()}
 filas.forEach(f=>{
@@ -671,18 +669,18 @@ filas.forEach(f=>{
   f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();abrirFicha(f)}});
 });
 $('#fcerrar').addEventListener('click',()=>ficha.close());
-ficha.addEventListener('click',e=>{if(e.target===ficha)ficha.close()});  // tocar fuera de la ficha la cierra
+ficha.addEventListener('click',e=>{if(e.target===ficha)ficha.close()});  // clic fuera cierra
 $('#fadd').addEventListener('click',()=>{addToCart(fichaFila.querySelector('h3').textContent);ficha.close()});
 
 
-/* ---------- cup builder ---------- */
+/* ---------- Arma tu plato ---------- */
 const str=$('#str'),swt=$('#swt');let milk='oat';
 const mix=(a,b,t)=>{const p=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));const A=p(a),B=p(b);return '#'+A.map((v,i)=>Math.round(lerp(v,B[i],t)).toString(16).padStart(2,'0')).join('')};
 function build(){
   const s=+str.value/100,w=+swt.value/100;
   [str,swt].forEach(r=>r.style.setProperty('--v',r.value+'%'));
-  const col=mix('#b5523f','#4a2616',s);  // del jugoso (rosado) al bien cocido (oscuro)
-  // interior de la tajada: rojo (jugoso) → rosado (a punto) → marrón (bien cocido)
+  const col=mix('#b5523f','#4a2616',s);
+  // interior: jugoso → a punto → bien cocido
   const centro=s<.5?mix('#c43b3b','#d9837a',s/.5):mix('#d9837a','#8a5a44',(s-.5)/.5), banda=mix('#c86a5c','#7a4b35',s);
   $('#cc').setAttribute('stop-color',centro);$('#cb1').setAttribute('stop-color',banda);$('#cb2').setAttribute('stop-color',banda);
   $('#cb1').setAttribute('offset',(.1+s*.25).toFixed(2));$('#cb2').setAttribute('offset',(.9-s*.25).toFixed(2));
@@ -691,8 +689,8 @@ function build(){
   $('#halo').style.background=`radial-gradient(circle,${mix('#f0d2ae','#c8642e',s*.6)},transparent 70%)`;
   const it=s<.33?0:s<.66?1:2; $$('#disc img').forEach((im,i)=>im.classList.toggle('on',i===it));
   $('.cupsvg').style.setProperty('--humo',w<.15?0:(.3+w*.7).toFixed(2));
-  $('#sv').textContent=s<.33?'Jugoso':s<.66?'A punto':'Bien cocido';$('#tagS').textContent='🔥 '+$('#sv').textContent;$('#tagM').textContent=milk==='none'?'🌿 Chimichurri':milk==='oat'?'🍟 Papas':'🥗 Ensalada';
-  $('#swv').textContent=w<.15?'Sin humo':w<.5?'Un poco':w<.8?'Ahumado':'Muy ahumado';$('#tagW').textContent='💨 '+$('#swv').textContent;
+  $('#sv').textContent=s<.33?'Jugoso':s<.66?'A punto':'Bien cocido';$('#tagS').textContent=$('#sv').textContent;$('#tagM').textContent=milk==='none'?'Chimichurri':milk==='oat'?'Papas':'Ensalada';
+  $('#swv').textContent=w<.15?'Sin humo':w<.5?'Un poco':w<.8?'Ahumado':'Muy ahumado';$('#tagW').textContent=$('#swv').textContent;
   const names={none:s>.6?['Bife Carbon','Bien cocido, firme, con chimichurri',18]:['Entraña al Chimichurri','Jugosa, herbal, intensa',16],
     oat:w>.4?['Ribeye Ahumado','Marmoleado, ahumado, con papas',24]:['Picanha con Papas','Grasa dorada, sal gruesa',20],
     whole:s>.6?['Asado de Tira','Lento, tierno, con ensalada',19]:['Lomo a la Brasa','Magro, rosado, fresco',22]};
@@ -702,13 +700,13 @@ function build(){
 $$('#milk button').forEach(b=>b.addEventListener('click',()=>{$$('#milk button').forEach(x=>x.classList.toggle('on',x===b));milk=b.dataset.m;build()}));
 $('#addb').addEventListener('click',()=>addToCart($('#rname').textContent));build();
 
-/* ---------- newsletter ---------- */
-$('#news').addEventListener('submit',e=>{e.preventDefault();const f=e.target;f.classList.add('ok');f.querySelector('input').value='';f.querySelector('input').placeholder="You're in. See you at sunrise ☀";});
+/* ---------- Boletín ---------- */
+$('#news').addEventListener('submit',e=>{e.preventDefault();const f=e.target;f.classList.add('ok');f.querySelector('input').value='';f.querySelector('input').placeholder='Listo, te escribimos pronto';});
 
-/* ---------- giant footer letters ---------- */
+/* ---------- Letras gigantes del pie ---------- */
 const g=$('#giant');g.innerHTML=[...g.textContent].map(c=>`<span>${c===' '?'&nbsp;':c}</span>`).join('');
 
-/* ---------- main loop ---------- */
+/* ---------- Bucle principal ---------- */
 const dot=cur.querySelector('.dot'), ringCur=cur.querySelector('.ring');
 const anchoMarq=()=>marq.scrollWidth/6; let wMarq=anchoMarq(); addEventListener('resize',()=>{wMarq=anchoMarq()});
 let yAntes=-1;
@@ -720,24 +718,23 @@ function loop(t){
     mx-=1+Math.abs(vel)*.6;if(-mx>wMarq)mx+=wMarq;
     marq.style.transform=`translate3d(${mx}px,0,0) skewX(${clamp(vel*-.25,-12,12)}deg)`;
   }
-  // Cursor: solo se mueve si el ratón se movió o el aro todavía lo está alcanzando
+  // Cursor: solo si hay movimiento
   if(Math.abs(rx-cx)>.1||Math.abs(ry-cy)>.1){
     rx=lerp(rx,cx,.18);ry=lerp(ry,cy,.18);
     ringCur.style.transform=`translate3d(${rx}px,${ry}px,0)`;clab.style.transform=`translate(calc(${rx}px - 50%),calc(${ry}px - 50%))`;
   }
   dot.style.transform=`translate3d(${cx}px,${cy}px,0)`;
   if(prev.classList.contains('on')){px=lerp(px,cx,.12);py=lerp(py,cy,.12);prev.style.left=px+'px';prev.style.top=py+'px'}
-  // El scroll solo se recalcula cuando de verdad cambió
+  // Scroll: solo si cambió
   if(y!==yAntes||sucio){onScroll();yAntes=y;sucio=false}
   requestAnimationFrame(loop);
 }
 requestAnimationFrame(loop);
 
-/* ---------- loader ---------- */
+/* ---------- Pantalla de carga ---------- */
 (function(){
   const n=$('#lnum'),bar=$('#lbar'),t0=performance.now(),D=AUTO?10:1700;
-  // La pantalla de carga espera a que la escena 3D y los videos estén preparados (como máximo 2,5 s),
-  // para que nada se congele cuando el visitante empieza a bajar.
+  // Espera la escena 3D y los videos (máximo 2,5 s) para no congelar el scroll
   const listo=Promise.race([Promise.all([videosListos,window.__gl3d]),new Promise(ok=>setTimeout(ok,2500))]);
   let preparado=false;listo.then(()=>{preparado=true});
   const salir=()=>{n.textContent='100';bar.style.width='100%';$('#loader').classList.add('out');document.body.classList.remove('loading');window.__ready=true};
@@ -746,7 +743,7 @@ requestAnimationFrame(loop);
 })();
 
 
-/* ---------- reservas por WhatsApp y horario en vivo (hora de Caracas) ---------- */
+/* ---------- Reservas por WhatsApp y horario ---------- */
 (function(){
   const f=$('#rform'),fecha=$('#rfecha'),hora=$('#rhora'),nom=$('#rnombre'),oca=$('#rocasion'),err=$('#rerror'),per=$('#rpersonas');
   const ahoraCcs=()=>new Date(new Date().toLocaleString('en-US',{timeZone:'America/Caracas'}));
@@ -758,7 +755,7 @@ requestAnimationFrame(loop);
   $('#rmas').addEventListener('click',()=>{personas=Math.min(20,personas+1);pintar()});
   const fallo=t=>{err.textContent=t;err.hidden=false};
   f.addEventListener('submit',e=>{e.preventDefault();err.hidden=true;
-    const n=nom.value.replace(/<[^>]*>/g,'').replace(/[<>]/g,'').trim();  // solo texto: sin etiquetas
+    const n=nom.value.replace(/<[^>]*>/g,'').replace(/[<>]/g,'').trim();  // solo texto
     if(!fecha.value||fecha.value<fecha.min)return fallo('Elige un día desde hoy en adelante.');
     if(new Date(fecha.value+'T12:00').getDay()===1)return fallo('Los lunes estamos cerrados. Elige otro día.');
     if(!hora.value)return fallo('Elige una hora.');
@@ -782,7 +779,7 @@ requestAnimationFrame(loop);
   }
   horario(); setInterval(horario,60000);
 })();
-/* ---------- autoscroll for the reel ---------- */
+/* ---------- Reel automático ---------- */
 if(location.hash==='#autoscroll'){document.documentElement.style.scrollBehavior='auto';
   const t0=performance.now()+800,D=7600;
   (function s(t){const H=document.documentElement.scrollHeight-innerHeight,k=clamp((t-t0)/D),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;scrollTo(0,H*e);if(k<1)requestAnimationFrame(s)})(performance.now());}
@@ -794,14 +791,14 @@ import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const canvas=document.getElementById('bean'), chapter=canvas.closest('.chapter'), llamarada=document.getElementById('llamarada');
-// Teléfonos y pantallas pequeñas: menos píxeles, sin sombras y menos partículas (se ve igual en esa pantalla).
+// Teléfono: menos píxeles, sombras y partículas
 const MOVIL=matchMedia('(max-width: 860px), (hover: none)').matches;
 const renderer=new THREE.WebGLRenderer({canvas,antialias:!MOVIL,alpha:true,powerPreference:'high-performance'});
 renderer.setPixelRatio(Math.min(devicePixelRatio,MOVIL?1:1.5));
 renderer.outputColorSpace=THREE.SRGBColorSpace;
 renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.08;
 renderer.shadowMap.enabled=!MOVIL; renderer.shadowMap.type=THREE.PCFShadowMap;
-// El vidrio de la jarra se calcula a la mitad de resolución: es la parte más cara de dibujar.
+// Vidrio a media resolución (lo más caro de dibujar)
 if('transmissionResolutionScale' in renderer)renderer.transmissionResolutionScale=.5;
 
 const scene=new THREE.Scene();
@@ -820,7 +817,7 @@ const warm=new THREE.PointLight(0xff9a50,0,6); scene.add(warm);
 const ground=new THREE.Mesh(new THREE.PlaneGeometry(40,40),new THREE.ShadowMaterial({opacity:.1}));
 ground.rotation.x=-Math.PI/2; ground.position.y=-2.45; ground.receiveShadow=true; root.add(ground);
 
-/* ----- textures ----- */
+/* ----- Texturas ----- */
 const hash=(x,y)=>{const s=Math.sin(x*127.1+y*311.7)*43758.5453;return s-Math.floor(s)};
 const vn=(x,y)=>{const xi=Math.floor(x),yi=Math.floor(y),xf=x-xi,yf=y-yi,u=xf*xf*(3-2*xf),v=yf*yf*(3-2*yf);
   const a=hash(xi,yi),b=hash(xi+1,yi),c=hash(xi,yi+1),d=hash(xi+1,yi+1);return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v};
@@ -828,19 +825,19 @@ const fbm=(x,y,o=6)=>{let v=0,a=.5,f=1;for(let i=0;i<o;i++){v+=a*vn(x*f,y*f);a*=
 function tex(size,fn,color=false){const c=document.createElement('canvas');c.width=c.height=size;const g=c.getContext('2d'),img=g.createImageData(size,size);
   for(let i=0;i<size*size;i++){const r=fn(i%size,(i/size)|0);img.data.set(color?[...r,255]:[r,r,r,255],i*4)}
   g.putImageData(img,0,0);const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;if(color)t.colorSpace=THREE.SRGBColorSpace;return t}
-// wrinkled roasted surface: fbm + fine stretched ridges
-const TB=MOVIL?256:512;  // el carbón ocupa poco en pantalla: a esta resolución se ve igual y se genera 4 veces más rápido
+// Superficie del carbón
+const TB=MOVIL?256:512;  // se ve igual y se genera 4 veces más rápido
 const bump=tex(TB,(x,y)=>{const u=x/TB,v=y/TB;const ridge=Math.abs(Math.sin((u*40+fbm(u*6,v*6,4)*3)*Math.PI));return 60+fbm(u*24,v*24)*130+ridge*14});
 const rough=tex(256,(x,y)=>140+fbm(x/20,y/20,4)*100);
 const albedo=tex(256,(x,y)=>{const n=fbm(x/30,y/30,5),s=hash(x,y)*.08;const k=.7+n*.6+s;return[Math.min(255,205*k),Math.min(255,200*k),Math.min(255,196*k)]},true);
 
-/* ----- bean half geometry ----- */
+/* ----- Trozo de carbón ----- */
 function beanHalf(side,seg=MOVIL?56:84){
   const g=new THREE.SphereGeometry(1,seg,seg),p=g.attributes.position,col=[];
   const inner=new THREE.Color(0xb98a5c),innerD=new THREE.Color(0x6e4528),crease=new THREE.Color(0x24120a);
   for(let i=0;i<p.count;i++){
     let x=p.getX(i),y=p.getY(i),z=p.getZ(i),cap=false;
-    const sx=Math.sin(y*2.4)*.07*(1-y*y*.6);             // S-curve of the crease
+    const sx=Math.sin(y*2.4)*.07*(1-y*y*.6);
     if((x-sx)*side<0){cap=true;x=sx+side*.002}
     const dx=x-sx;
     const bulto=1+(vn(x*2.6+5,y*2.6+z*2.6)-.5)*.34;        // trozo irregular de carbón
@@ -862,58 +859,57 @@ const halfL=new THREE.Mesh(beanHalf(-1),beanMat),halfR=new THREE.Mesh(beanHalf(1
 [halfL,halfR].forEach(m=>m.castShadow=true);
 const bean=new THREE.Group(); bean.add(halfL,halfR); root.add(bean);
 
-/* ----- ambient background beans ----- */
+/* ----- Trozos de fondo ----- */
 const smallGeo=beanHalf(1,24), smallGeoL=beanHalf(-1,24);
 const amb=[];
 for(let i=0;i<7;i++){const g=new THREE.Group();g.add(new THREE.Mesh(smallGeo,beanMat),new THREE.Mesh(smallGeoL,beanMat));
   const s=.12+hash(i,11)*.16;g.scale.setScalar(s);g.userData={x:-1.6+hash(i,1)*3.6,y:(hash(i,2)-.5)*5.5,z:-4-hash(i,3)*6,sp:.2+hash(i,4)*.4,r:hash(i,5)*6};
   root.add(g);amb.push(g)}
 
-/* ----- falling beans + grounds ----- */
+/* ----- Trozos que caen ----- */
 const N=MOVIL?100:180, minis=new THREE.InstancedMesh(smallGeo,beanMat,N); minis.castShadow=true; root.add(minis);
 const NG=MOVIL?240:600, grounds=new THREE.InstancedMesh(new THREE.DodecahedronGeometry(1,0),new THREE.MeshBasicMaterial({color:0xff7a22}),NG); root.add(grounds);
 const seeds=Array.from({length:N},(_,i)=>({t:hash(i,3)*.5,x:(hash(i,7)-.5)*.55,z:(hash(i,9)-.5)*.4,r:[hash(i,1)*6,hash(i,2)*6,hash(i,4)*6],s:.08+hash(i,5)*.05,w:(hash(i,6)-.5)*10}));
-minis.userData.activo=true; grounds.userData.activo=true; // el primer cuadro las deja escondidas
+minis.userData.activo=true; grounds.userData.activo=true;
 const gseeds=Array.from({length:NG},(_,i)=>({t:.25+hash(i,13)*.6,x:(hash(i,17)-.5)*.35,z:(hash(i,19)-.5)*.3,s:.012+hash(i,15)*.02,w:hash(i,16)*.6}));
 
-/* ----- carafe (double-wall glass, drip-server shape) ----- */
+/* ----- Jarra (escondida, la reemplaza la parrilla) ----- */
 const outerP=[[0,-2.45],[.55,-2.445],[.86,-2.38],[1.08,-2.2],[1.2,-1.92],[1.22,-1.6],[1.13,-1.28],[.94,-1.0],[.72,-.78],[.58,-.6],[.56,-.42],[.6,-.28],[.7,-.16],[.8,-.1]];
 const W=.035;
 const innerP=outerP.slice(1,-1).map(([x,y])=>[Math.max(x-W,.001),y+(y<-2.4?W:0)]);
 const shell=[...outerP,[.8-W,-.08],...innerP.slice().reverse(),[0,-2.45+W]].map(([x,y])=>new THREE.Vector2(x,y));
-// Vidrio ahumado sin refracción real: se ve casi igual y evita dibujar la escena dos veces (la carga tardaba segundos en compilarlo)
+// Vidrio sin refracción real: evita dibujar la escena dos veces
 const glassMat=new THREE.MeshPhysicalMaterial({color:0x6e625a,roughness:.04,metalness:0,clearcoat:1,clearcoatRoughness:.03,envMapIntensity:1.6,specularIntensity:1,transparent:true,opacity:.34,side:THREE.FrontSide,depthWrite:false});
 const glass=new THREE.Mesh(new THREE.LatheGeometry(shell,160),glassMat); glass.renderOrder=2;
 const carafe=new THREE.Group(); carafe.add(glass);
 const lip=new THREE.Mesh(new THREE.TorusGeometry(.8-W/2,W/2,16,128),glassMat); lip.rotation.x=Math.PI/2; lip.position.y=-.09; carafe.add(lip);
-// wooden collar + leather tie
+// Cuello de madera
 const wood=tex(512,(x,y)=>{const n=fbm(x/90,y/6,4);const k=.75+.35*Math.sin(y*.18+n*6);return[150*k,98*k,60*k]},true);
 const collar=new THREE.Mesh(new THREE.CylinderGeometry(.635,.6,.34,96,1,true),new THREE.MeshPhysicalMaterial({map:wood,roughness:.55,clearcoat:.3,side:THREE.DoubleSide}));
 collar.position.y=-.5; collar.castShadow=true; carafe.add(collar);
 const tie=new THREE.Mesh(new THREE.TorusGeometry(.64,.022,12,96),new THREE.MeshStandardMaterial({color:0x3a2216,roughness:.7})); tie.rotation.x=Math.PI/2; tie.position.y=-.5; carafe.add(tie);
 const knot=new THREE.Mesh(new THREE.CapsuleGeometry(.025,.22,6,12),tie.material); knot.position.set(.6,-.62,.2); knot.rotation.z=.25; carafe.add(knot);
-// liquid follows the inner wall
+// Brasas dentro
 const liqMat=new THREE.MeshStandardMaterial({color:0x100806,roughness:.8,emissive:0xa8300a,emissiveIntensity:.3});
 const liquid=new THREE.Mesh(new THREE.BufferGeometry(),liqMat); carafe.add(liquid);
 const IN=innerP.map(([x,y])=>[x-.006,y]);
 function radiusAt(h){for(let i=0;i<IN.length-1;i++){const[a1,b1]=IN[i],[a2,b2]=IN[i+1];if(h>=b1&&h<=b2)return a1+(a2-a1)*(h-b1)/(b2-b1)}return IN[IN.length-1][0]}
-// El nivel de las brasas se prepara en 90 pasos al cargar; antes se fabricaba una figura nueva en cada cuadro
-// mientras la jarra se llenaba, y eso trababa el scroll.
+// 90 niveles precalculados: crear la figura en cada cuadro trababa el scroll
 const NIVELES=45, LO=-2.45+W+.005, HI=-1.05, formas=[];
 for(let i=0;i<=NIVELES;i++){const h=LO+(HI-LO)*i/NIVELES;
   const pts=[[0,IN[0][1]],...IN.filter(([x,y])=>y<h),[radiusAt(h),h],[0,h]].map(([x,y])=>new THREE.Vector2(x,y));
   formas.push(new THREE.LatheGeometry(pts,MOVIL?40:72))}
 let lastI=-1;
 function setLevel(h){const i=Math.round(clamp((h-LO)/(HI-LO))*NIVELES);if(i===lastI)return;lastI=i;liquid.geometry=formas[i]}
-// crema with swirl texture
+// Superficie de brasas
 const swirl=tex(512,(x,y)=>{const u=x/256-1,v=y/256-1;const n=fbm(u*5+9,v*5+9,5);const g=Math.max(0,n-.42)*2.6;return[Math.min(255,40+g*230),Math.min(255,26+g*95),Math.min(255,20+g*25)]},true);  // brasas: carbón con vetas encendidas
 const crema=new THREE.Mesh(new THREE.CircleGeometry(1,96),new THREE.MeshStandardMaterial({map:swirl,emissiveMap:swirl,emissive:0xffffff,emissiveIntensity:.9,roughness:.9}));
 crema.rotation.x=-Math.PI/2; carafe.add(crema);
-// tiny bubbles on the crema
-const NB=40, bubbles=new THREE.InstancedMesh(new THREE.SphereGeometry(1,10,8),new THREE.MeshBasicMaterial({color:0xffa040}),NB); carafe.add(bubbles);  // chispitas sobre las brasas
+// Chispitas
+const NB=40, bubbles=new THREE.InstancedMesh(new THREE.SphereGeometry(1,10,8),new THREE.MeshBasicMaterial({color:0xffa040}),NB); carafe.add(bubbles);
 const bseed=Array.from({length:NB},(_,i)=>({a:hash(i,21)*6.28,r:Math.sqrt(hash(i,22))*.85,s:.012+hash(i,23)*.022}));
 
-/* ----- parrilla de hierro: reemplaza a la jarra (que queda escondida) ----- */
+/* ----- Parrilla ----- */
 [glass,lip,collar,tie,knot].forEach(o=>o.visible=false);
 const hierro=new THREE.MeshStandardMaterial({color:0x1c1b1a,roughness:.5,metalness:.8});
 const parrilla=new THREE.Group(); carafe.add(parrilla);
@@ -929,13 +925,13 @@ for(let i=0;i<NBARRAS;i++){tmp.position.set(-1.45+i*2.9/(NBARRAS-1),-1.22,0);tmp
 parrilla.add(barras);
 pieza(3.04,.04,.04,0,-1.22,.7); pieza(3.04,.04,.04,0,-1.22,-.7); // marco de la rejilla
 
-// Cama de brasas: los trozos que caen se van acumulando aquí (se muestran según cuánto cayó)
+// Cama de brasas
 const NCAMA=MOVIL?40:80, cama=new THREE.InstancedMesh(smallGeo,beanMat,NCAMA); parrilla.add(cama);
 const camaSeeds=Array.from({length:NCAMA},(_,i)=>({x:(hash(i,31)-.5)*2.75,z:(hash(i,32)-.5)*1.2,y:-1.84+hash(i,33)*.16,s:.13+hash(i,34)*.1,r:[hash(i,35)*6,hash(i,36)*6,hash(i,37)*6]}));
 const brillo=new THREE.Mesh(new THREE.PlaneGeometry(2.95,1.35),new THREE.MeshBasicMaterial({map:swirl,color:0x000000}));
 brillo.rotation.x=-Math.PI/2; brillo.position.y=-1.885; parrilla.add(brillo);
 
-// Llamas: partículas que suben, del amarillo al naranja y al rojo oscuro, con mezcla aditiva
+// Llamas de partículas
 const lc=document.createElement('canvas');lc.width=lc.height=64;const lg=lc.getContext('2d');
 const lgr=lg.createRadialGradient(32,32,0,32,32,32);lgr.addColorStop(0,'rgba(255,255,255,1)');lgr.addColorStop(.35,'rgba(255,255,255,.55)');lgr.addColorStop(1,'rgba(255,255,255,0)');
 lg.fillStyle=lgr;lg.fillRect(0,0,64,64);
@@ -944,9 +940,8 @@ fgeo.setAttribute('position',new THREE.BufferAttribute(fpos,3)); fgeo.setAttribu
 const fuego=new THREE.Points(fgeo,new THREE.PointsMaterial({size:.5,map:new THREE.CanvasTexture(lc),vertexColors:true,transparent:true,depthWrite:false,blending:THREE.AdditiveBlending}));
 fuego.frustumCulled=false; parrilla.add(fuego);
 const fseeds=Array.from({length:NF},(_,i)=>({x:(hash(i,41)-.5)*2.6,z:(hash(i,42)-.5)*1.1,v:.55+hash(i,43)*.9,o:hash(i,44),w:hash(i,45)*6}));
-// Llamas filmadas: el mismo video sirve de máscara (lo negro queda transparente), así se ven sobre el fondo claro
-// Las llamas son 48 cuadros de un video real (Pexels 5659678) juntos en una sola imagen: el shader los va pasando.
-// Así no usan el decodificador de video, que se saturaba al bajar y hacía que el fuego se trabara.
+// Llamas filmadas: 48 cuadros de Pexels 5659678 en una imagen (el decodificador de video se saturaba).
+// Lo negro queda transparente.
 const ATLAS_COLS=8, ATLAS_FILAS=6, ATLAS_CUADROS=48, ATLAS_FPS=16;
 const fuegoTex=new THREE.Texture(); fuegoTex.minFilter=THREE.LinearFilter; fuegoTex.generateMipmaps=false;
 const fuegoListo=new THREE.TextureLoader().loadAsync('img/fuego-atlas.jpg')
@@ -955,10 +950,10 @@ const fuegoListo=new THREE.TextureLoader().loadAsync('img/fuego-atlas.jpg')
 const llamas=new THREE.Mesh(new THREE.PlaneGeometry(3.3,1.86),new THREE.ShaderMaterial({
   uniforms:{map:{value:fuegoTex},opacity:{value:0},cuadro:{value:0}},transparent:true,depthWrite:false,
   vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-  // el canal más brillante decide cuánto se ve: las llamas quedan sólidas y el negro desaparece
+  // opacidad = canal más brillante
   fragmentShader:'uniform sampler2D map;uniform float opacity;uniform float cuadro;varying vec2 vUv;vec3 celda(float f){float col=mod(f,8.),fila=floor(f/8.);return texture2D(map,vec2((col+vUv.x)/8.,(5.-fila+clamp(vUv.y,.004,.996))/6.)).rgb;}void main(){float f0=floor(cuadro);vec3 c=mix(celda(f0),celda(mod(f0+1.,48.)),fract(cuadro));float a=clamp(max(c.r,max(c.g,c.b))*2.3-.12,0.,1.);float borde=smoothstep(0.,.12,vUv.x)*smoothstep(1.,.88,vUv.x)*smoothstep(1.,.75,vUv.y);gl_FragColor=vec4(min(c*1.2,1.),a*borde*opacity);}'}));
 llamas.position.set(0,-.3,.05); parrilla.add(llamas);
-// segunda capa en espejo, un poco más atrás: las llamas llenan todo el ancho de la rejilla
+// Segunda capa en espejo
 const llamas2=new THREE.Mesh(llamas.geometry,llamas.material); llamas2.position.set(.25,-.3,-.25); parrilla.add(llamas2);
 const fuegoLuz=new THREE.PointLight(0xff7a2a,0,9); fuegoLuz.position.set(0,-.4,.5); parrilla.add(fuegoLuz);
 const amarillo=new THREE.Color(1,.82,.38), naranja=new THREE.Color(1,.36,.06), rojo=new THREE.Color(.35,.04,0), cf=new THREE.Color();
@@ -990,29 +985,29 @@ function actualizarParrilla(fuerza,cantidad){
   fuegoLuz.intensity=Math.min(1.4,fuerza)*(7+Math.sin(clock*17)*1.2+Math.sin(clock*7.3)*1.6);
 }
 root.add(carafe);
-// droplet stream (beads)
-const NS=40, drops=new THREE.InstancedMesh(new THREE.SphereGeometry(1,16,12),new THREE.MeshBasicMaterial({color:0xff8a2a}),NS); root.add(drops);  // hilo de chispas
-// ripple ring
+// Hilo de chispas
+const NS=40, drops=new THREE.InstancedMesh(new THREE.SphereGeometry(1,16,12),new THREE.MeshBasicMaterial({color:0xff8a2a}),NS); root.add(drops);
+// Anillo
 const ripple=new THREE.Mesh(new THREE.RingGeometry(.9,1,64),new THREE.MeshBasicMaterial({color:0xff9a4a,transparent:true,opacity:0}));
 ripple.rotation.x=-Math.PI/2; carafe.add(ripple);
-// soft contact shadow
+// Sombra de contacto
 const cs=document.createElement('canvas');cs.width=cs.height=128;const cg=cs.getContext('2d');const gr=cg.createRadialGradient(64,64,0,64,64,64);gr.addColorStop(0,'rgba(40,25,15,.45)');gr.addColorStop(1,'rgba(40,25,15,0)');cg.fillStyle=gr;cg.fillRect(0,0,128,128);
 const contact=new THREE.Mesh(new THREE.PlaneGeometry(3.2,3.2),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(cs),transparent:true,depthWrite:false}));
 contact.rotation.x=-Math.PI/2; contact.position.y=-2.44; carafe.add(contact);
 
 
-/* ----- soplar las brasas: mantener presionado aviva el carbón, suelta chispas y chisporrotea ----- */
+/* ----- Soplar las brasas ----- */
 let soplo=0, soplando=false, audio=null;
 const NCH=MOVIL?80:160, chgeo=new THREE.BufferGeometry(), chpos=new Float32Array(NCH*3), chcol=new Float32Array(NCH*3);
 chgeo.setAttribute('position',new THREE.BufferAttribute(chpos,3)); chgeo.setAttribute('color',new THREE.BufferAttribute(chcol,3));
 const chispas=new THREE.Points(chgeo,new THREE.PointsMaterial({size:.17,map:fuego.material.map,vertexColors:true,transparent:true,depthWrite:false,alphaTest:.05,toneMapped:false}));
 chispas.frustumCulled=false; root.add(chispas);
 const chseeds=Array.from({length:NCH},(_,i)=>({a:hash(i,51)*6.28,r:.3+hash(i,52)*.7,v:.6+hash(i,53),o:hash(i,54)}));
-// Chisporroteo: ruido corto filtrado, generado en el navegador (no hay archivo de audio)
+// Chisporroteo generado (sin archivo de audio)
 function crearAudio(){
   const AC=window.AudioContext||window.webkitAudioContext; if(!AC)return null;
   const ctx=new AC(), buf=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate), d=buf.getChannelData(0);
-  for(let i=0;i<d.length;i++){d[i]=Math.random()<.0025?(Math.random()*2-1):(Math.random()*2-1)*.04}  // chasquidos sueltos sobre un siseo suave
+  for(let i=0;i<d.length;i++){d[i]=Math.random()<.0025?(Math.random()*2-1):(Math.random()*2-1)*.04}
   const src=ctx.createBufferSource(); src.buffer=buf; src.loop=true;
   const filtro=ctx.createBiquadFilter(); filtro.type='bandpass'; filtro.frequency.value=2400; filtro.Q.value=.7;
   const vol=ctx.createGain(); vol.gain.value=0; src.connect(filtro).connect(vol).connect(ctx.destination); src.start();
@@ -1024,16 +1019,16 @@ const cAviva=new THREE.Color(1,.55,.15);
 function actualizarSoplo(dt){
   soplo+=((soplando?1:0)-soplo)*Math.min(1,dt*(soplando?3:2));
   if(audio)audio.vol.gain.setTargetAtTime(soplo*.22,audio.ctx.currentTime,.08);
-  beanMat.emissive.setRGB(.075*soplo,.014*soplo,.002*soplo);  // el carbón se pone al rojo mientras se sopla
+  beanMat.emissive.setRGB(.075*soplo,.014*soplo,.002*soplo);
   const b=bean.position;
   for(let i=0;i<NCH;i++){const c=chseeds[i],vida=(clock*c.v+c.o)%1,k=i*3;
     chpos[k]=b.x+Math.cos(c.a+vida*2)*c.r*(.6+vida); chpos[k+1]=b.y-.7+vida*1.5; chpos[k+2]=Math.sin(c.a)*c.r*.5;
-    // sobre fondo claro: color sólido de brasa, y la chispa que se apaga se esconde
+    // fondo claro: color sólido
     const e=soplo*(1-vida); if(e<.12)chpos[k+1]=-99;
     chcol[k]=1; chcol[k+1]=.28+.35*(1-vida); chcol[k+2]=.02}
   chgeo.attributes.position.needsUpdate=true; chgeo.attributes.color.needsUpdate=true;
 }
-/* ----- interaction ----- */
+/* ----- Interacción ----- */
 let mouse={x:0,y:0},tm={x:0,y:0},spin=0,dragging=false,lastX=0;
 canvas.addEventListener('pointermove',e=>{const r=canvas.getBoundingClientRect();tm.x=(e.clientX-r.left)/r.width*2-1;tm.y=(e.clientY-r.top)/r.height*2-1;
   if(dragging){spin+=(e.clientX-lastX)*.012;lastX=e.clientX}});
@@ -1041,7 +1036,7 @@ canvas.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;canvas.s
 canvas.addEventListener('pointerup',()=>dragging=false);
 canvas.addEventListener('dblclick',()=>{spin+=Math.PI*2});
 
-/* ----- timeline ----- */
+/* ----- Línea de tiempo ----- */
 const seg=(p,a,b)=>clamp((p-a)/(b-a)), ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2, back=t=>{const c=1.7;return 1+(c+1)*Math.pow(t-1,3)+c*Math.pow(t-1,2)};
 const dm=new THREE.Object3D(); let progress=0,clock=0,baseZ=12,spinV=0,rot=0;
 function layout(){const w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();
@@ -1050,7 +1045,7 @@ function frame(dt){
   clock+=dt; const p=progress;
   mouse.x+=(tm.x-mouse.x)*.06; mouse.y+=(tm.y-mouse.y)*.06;
   const crack=seg(p,.14,.2), split=back(seg(p,.18,.46)), fall=seg(p,.3,.92), fill=ease(seg(p,.48,1)), pour=seg(p,.7,.97);
-  // tremble right before cracking
+  // temblor antes de partirse
   const shake=crack*(1-seg(p,.2,.22))*.04;
   spinV+=(spin-spinV)*.08; rot+=dt*.35*(1-clamp(split));
   bean.position.set(Math.sin(clock*40)*shake,1.55+Math.sin(clock*1.2)*.06,0);
@@ -1061,12 +1056,12 @@ function frame(dt){
   actualizarSoplo(dt);
   warm.intensity=clamp(split)*2.2+soplo*(5+Math.sin(clock*23)*1.2); warm.position.set(0,1.4,1.2);
   bean.scale.multiplyScalar(1+soplo*.03*Math.sin(clock*9));
-  // ambient beans
+  // trozos de fondo
   amb.forEach((g,i)=>{const u=g.userData;g.position.set(u.x+Math.sin(clock*u.sp+i)*.3,u.y+Math.cos(clock*u.sp*.8+i)*.25-p*1.5,u.z);g.rotation.set(u.r+clock*u.sp,u.r*2+clock*u.sp*.7,0)});
-  // carafe
+  // jarra
   const show=ease(seg(p,.2,.42));
   carafe.position.set(0,-.55-(1-show)*2.4,0); carafe.scale.setScalar(.72); carafe.visible=show>.001;
-  // falling beans (solo se recalculan mientras caen; fuera de ese tramo ya quedaron escondidos)
+  // trozos que caen (solo mientras caen)
   const y0=bean.position.y-.2, yb=carafe.position.y+(-1.25)*.72;
   const cayendo=fall>0&&fill<.96;
   if(cayendo||minis.userData.activo){minis.userData.activo=cayendo;
@@ -1082,7 +1077,7 @@ function frame(dt){
     else{dm.position.set(s.x*(1+Math.sin(t*6+i)*.3),y0-.2+(yb-y0+.2)*t*t,s.z);dm.rotation.set(t*9+i,i,t*5);dm.scale.setScalar(s.s)}
     dm.updateMatrix();grounds.setMatrixAt(i,dm.matrix)}
   grounds.instanceMatrix.needsUpdate=true;}
-  // liquid
+  // brasas
   const h=LO+(HI-LO)*fill;
   setLevel(h); liquid.visible=false;
   const rr=radiusAt(h);
@@ -1091,16 +1086,16 @@ function frame(dt){
   for(let i=0;i<NB;i++){const b=bseed[i];dm.position.set(Math.cos(b.a+clock*.2)*b.r*rr,h+.01,Math.sin(b.a+clock*.2)*b.r*rr);dm.scale.setScalar(0);dm.rotation.set(0,0,0);dm.updateMatrix();bubbles.setMatrixAt(i,dm.matrix)}
   bubbles.instanceMatrix.needsUpdate=true;
   contact.material.opacity=show;
-  // droplets stream
-  const top=bean.position.y-1.0, bot=carafe.position.y+crema.position.y*.72, on=false;  // el chorro de la jarra no existe en la parrilla
+
+  const top=bean.position.y-1.0, bot=carafe.position.y+crema.position.y*.72, on=false;
   for(let i=0;i<NS;i++){const f=((i/NS)+clock*1.6)%1;
     if(!on)dm.scale.setScalar(0);else{dm.position.set(Math.sin(f*9+i)*.01,top+(bot-top)*f*f,0);dm.scale.set(.035,.035*(1+f*2.2),.035)}
     dm.rotation.set(0,0,0);dm.updateMatrix();drops.setMatrixAt(i,dm.matrix)}
   drops.instanceMatrix.needsUpdate=true;
   const rp=(clock*1.4)%1; ripple.position.y=crema.position.y+.006; ripple.scale.setScalar(.15+rp*.8*rr); ripple.material.opacity=0;
-  // fuego: crece a medida que caen las brasas y al final se aviva hasta cubrir la escena
+  // fuego
   const aviva=seg(p,.86,1); actualizarParrilla(fill*.9+aviva*1.6,fill); llamarada.style.opacity=(aviva*.85).toFixed(3);
-  // camera
+  // cámara
   camera.position.set(Math.sin(clock*.2)*.25+mouse.x*.35,.1-mouse.y*.25,baseZ+1.5-clamp(split)*.6);
   camera.lookAt(0,-.1,0);
   renderer.render(scene,camera);
@@ -1108,13 +1103,12 @@ function frame(dt){
 function measure(){const r=chapter.getBoundingClientRect();progress=clamp(-r.top/(chapter.offsetHeight-innerHeight))}
 addEventListener('resize',layout); layout();
 
-// Solo se dibuja cuando la escena está en pantalla y la pestaña está abierta.
+// Solo dibuja en pantalla y con la pestaña visible
 let enPantalla=true;
 new IntersectionObserver(([e])=>{enPantalla=e.isIntersecting},{rootMargin:'100px'}).observe(chapter);
 const quieto=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// Preparar todo detrás de la pantalla de carga: se dibuja una vez con el brasero, las brasas y las chispas
-// a la vista para que el navegador compile el vidrio y los materiales ahora y no a mitad del scroll.
+// Compilar materiales durante la carga y no a mitad del scroll
 async function preparar(){
   await fuegoListo;
   progress=.8; frame(1/60);
@@ -1127,8 +1121,7 @@ preparar().finally(()=>window.__gl3dOk&&window.__gl3dOk());
 let last=performance.now(), proximo=0;
 renderer.setAnimationLoop(now=>{
   if(!enPantalla||document.hidden){last=now;return}
-  // En el teléfono la escena se dibuja a unos 30 cuadros por segundo: se ve igual y deja libre el procesador
-  // para el scroll (antes la parrilla se trababa y la página seguía bajando sola).
+  // Teléfono: ~30 cuadros por segundo para dejar libre el scroll
   if(MOVIL&&now<proximo)return; proximo=now+31;
   const dt=Math.min((now-last)/1000,.05);last=now;
   measure();
